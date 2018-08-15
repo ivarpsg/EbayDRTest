@@ -1,14 +1,16 @@
 package com.ebay.cart.Base;
 
+import com.ebay.cart.util.Wrapper;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.FileInputStream;
 import java.util.Properties;
 
 
-public class BrowserManager {
+public class BrowserManager extends Wrapper {
 
 
     private DriverManager driverManager;
@@ -29,7 +31,7 @@ public class BrowserManager {
         }
     }
 
-    protected void launchBrowser() {
+    private void launchBrowser() {
         String BrowserType = prop.getProperty("browser").toUpperCase();
 
 
@@ -55,18 +57,12 @@ public class BrowserManager {
     protected void navigateTo(String url){
         driver.get(url);
     }
-    protected boolean isElementPresent(WebElement element) {
-        boolean value=false;
-        try {
-            if(element.isDisplayed()){
-                value=true;
-            }} catch(NoSuchElementException e) {
-            e.printStackTrace();
-        }
-        return value;
+
+
+    public void select(String string,WebElement element){
+        Select select=new Select(element);
+        select.selectByVisibleText(string);
     }
-
-
 
 
 }

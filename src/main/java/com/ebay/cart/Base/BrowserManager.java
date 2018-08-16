@@ -31,7 +31,7 @@ public class BrowserManager extends Wrapper {
         }
     }
 
-    private void launchBrowser() {
+    public void launchBrowser() {
         String BrowserType = prop.getProperty("browser").toUpperCase();
 
 
@@ -54,15 +54,13 @@ public class BrowserManager extends Wrapper {
     protected void navigate(String URL) {
         driver.get(prop.getProperty(URL));
     }
-    protected void navigateTo(String url){
+    protected void navigateToURL(String url){
         driver.get(url);
     }
 
 
-    public void select(String string,WebElement element){
-        Select select=new Select(element);
-        select.selectByVisibleText(string);
-    }
+
+
 
 
 }

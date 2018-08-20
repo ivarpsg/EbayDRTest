@@ -24,8 +24,8 @@ import java.util.List;
 public class AWSPage extends BrowserManager {
 
     //Assign values from the test classes or a configuration file
-    public String ACCESS_KEY_ID = "AKIAIGHAUSYIVHFWSBHQ";//Add your subscription's access key here
-    public String SECRET_KEY = "10Nlj6Kk09YkU9COYoLxjZq5EEOAtlis1iBu/XM1";//Add your subscription's secret key here
+    public String ACCESS_KEY_ID = "//Add your subscription's access key here";
+    public String SECRET_KEY = "//Add your subscription's secret key here";
 
     //Amazon Regions that are currently supported by CLOUD MATRIX
     //Default Region to be used if no region is mentioned arguments

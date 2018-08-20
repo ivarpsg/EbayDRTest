@@ -1,2 +1,2 @@
 # EbayDRTest
-Test framework for Data republic
+Test framework with AWS

@@ -1,3 +1,4 @@
+package com.ebay.cart.Base;
 import org.apache.log4j.Logger;
 
 public class Log {

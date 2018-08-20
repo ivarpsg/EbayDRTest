@@ -19,7 +19,7 @@ public class HomePageSteps extends Steps{
     }
 
     @Then("^user adds the best match from the list of search results to the cart$")
-    public void userAddsTheBestMatchFromTheListOfSearchResultsToTheCart()  {
+    public void userAddsTheBestMatchFromTheListOfSearchResultsToTheCart() throws InterruptedException {
         searchResultsPage.clickFirstelement();
         searchResultsPage.ClickAddCartButton();
     }

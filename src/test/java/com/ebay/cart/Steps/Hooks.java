@@ -7,7 +7,7 @@ import javafx.scene.layout.BackgroundRepeat;
 
 public class Hooks extends BrowserManager {
 
-    @Before
+    @Before("~@Ec2")
     public void openBrowser(){
 
         launchBrowser();

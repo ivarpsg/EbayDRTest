@@ -3,8 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-
     <groupId>EbayAutoTest</groupId>
     <artifactId>EbayAutoTest</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -41,7 +39,7 @@
         <groupId>com.aventstack</groupId>
         <artifactId>extentreports</artifactId>
         <version>3.1.5</version>
-        <scope>provided</scope>
+
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
     <dependency>
@@ -97,6 +95,13 @@
         <version>2.12.2</version>
 
     </dependency>
+    <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+    </dependency>
+
 
 
     <dependency>
@@ -123,10 +128,19 @@
         <version>1.2.5</version>
         <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>software.amazon.awssdk</groupId>
+        <artifactId>aws-sdk-java</artifactId>
+        <version>2.0.0-preview-11</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk</artifactId>
+        <version>1.11.390</version>
+    </dependency>
 
-
-
-    </dependencies>
+</dependencies>
 
 
 
@@ -199,13 +213,13 @@
                             <!-- Mandatory -->
                             <!-- comma separated list of package names to scan for glue code -->
                             <glue>
-                                <package>com.telstra.vantage.Steps</package>
+                                <package>com.ebay.cart.Steps</package>
                             </glue>
                             <!-- These are the default values -->
                             <!-- Where to output the generated tests -->
                             <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
                             <!-- The diectory, which must be in the root of the runtime classpath, containing your feature files.  -->
-                            <featuresDirectory>src\test\java\com\telstra\vantage\features</featuresDirectory>
+                            <featuresDirectory>src\test\java\com\ebay\cart\features</featuresDirectory>
                             <!-- Directory where the cucumber report files shall be written  -->
                             <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
                             <!-- comma separated list of output formats -->
@@ -214,9 +228,10 @@
                             <strict>true</strict>
                             <!-- CucumberOptions.monochrome property -->
                             <monochrome>false</monochrome>
+                            <parallelScheme>SCENARIO</parallelScheme>
                             <!-- The tags to run, maps to CucumberOptions.tags property. Default is no tags. -->
                             <tags>
-                                <tag>@continue</tag>
+                                <tag>@search</tag>
                             </tags>
                             <!-- Generate TestNG runners instead of JUnit ones. -->
                             <useTestNG>false</useTestNG>
@@ -243,7 +258,7 @@
                         <include>**/*IT.class</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
-                    <rerunFailingTestsCount>3</rerunFailingTestsCount>
+                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -274,7 +289,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.util.CucumberReport</mainClass>
+                            <mainClass>com.ebay.cart.util.CucumberReport</mainClass>
                         </configuration>
                     </execution>
                 </executions>

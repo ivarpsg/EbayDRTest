@@ -1,5 +1,6 @@
 package com.ebay.cart.Base;
 
+import com.ebay.cart.util.util;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,67 +8,59 @@ import org.openqa.selenium.WebElement;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import static com.ebay.cart.util.util.readConfigfile;
 
-public class BrowserManager {
 
+public class BrowserManager extends util {
 
-    private DriverManager driverManager;
+    private static DriverManager driverManager;
     public static WebDriver driver;
-    private Properties prop;
-
 
     public BrowserManager() {
-
-        try {
-            prop = new Properties();
-            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//resources//config.properties");
-            prop.load(fis);
-        } catch (Exception e) {
-            System.out.println("Error in initializing Properties file");
-
-
-        }
+        readConfigfile();
     }
 
-    protected void launchBrowser() {
+
+    public void launchBrowser() {
         String BrowserType = prop.getProperty("browser").toUpperCase();
+        driverManager = DriveraManagerFactory.getManager(DriverType.valueOf(BrowserType));
+
+        driver = driverManager.getDriver();
+        driver.manage().window().maximize();
 
 
-            driverManager = DriveraManagerFactory.getManager(DriverType.valueOf(BrowserType));
-            driver = driverManager.getDriver();
-            driver.manage().window().maximize();
+    }
+
+    public WebDriver getDriver() {
+        if (driver == null) {
+            launchBrowser();
         }
-
-    public WebDriver getDriver(){
-        if(driver==null){
-            launchBrowser();}
         return driver;
     }
 
     protected void teardown() {
-
-        driverManager.quitDriver();
+        if (driver != null)
+            driver.quit();
     }
 
-    protected void navigate(String URL) {
-        driver.get(prop.getProperty(URL));
+    protected void navigate(String propURL) {
+        String env = prop.getProperty("env");
+        if (env.equalsIgnoreCase("prod")) {
+            readpropfile("prod");
+            driver.get(properties.getProperty(propURL));
+        } else if (env.equalsIgnoreCase("uat")) {
+            readpropfile("uat");
+            driver.get(properties.getProperty(propURL));
+        } else {
+            readpropfile("fast");
+            driver.get(properties.getProperty(propURL));
+        }
     }
-    protected void navigateTo(String url){
+
+    protected void navigateTo(String url) {
         driver.get(url);
     }
-    protected boolean isElementPresent(WebElement element) {
-        boolean value=false;
-        try {
-            if(element.isDisplayed()){
-                value=true;
-            }} catch(NoSuchElementException e) {
-            e.printStackTrace();
-        }
-        return value;
-    }
-
-
-
 
 }
+
 

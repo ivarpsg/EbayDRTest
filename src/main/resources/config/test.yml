@@ -1,0 +1,22 @@
+Windows_10_chrome:
+  platform: Windows 10
+  browserName: chrome
+  version: '70.0'
+  resolution: 1920x1080
+Windows_7_chrome:
+  platform: Windows 10
+  browserName: chrome
+  version: '69.0'
+  resolution: 1920x1080
+
+Windows_10_chrome70:
+  platform: Windows 10
+  browserName: chrome
+  version: '70.0'
+  resolution: 1366x768
+
+Windows_10_IE:
+  platform: Windows 10
+  browserName: chrome
+  version: '70.0'
+  resolution: 1920x1080

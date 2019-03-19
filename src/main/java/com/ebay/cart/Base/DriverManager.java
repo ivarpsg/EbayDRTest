@@ -2,12 +2,14 @@ package com.ebay.cart.Base;
 
 import org.openqa.selenium.WebDriver;
 
+import java.net.MalformedURLException;
+
 public abstract class DriverManager {
 
     protected WebDriver driver;
     protected abstract void startService();
     protected abstract void stopService();
-    protected abstract void createDriver();
+    protected abstract void createDriver() throws MalformedURLException;
 
     public void quitDriver() {
         if (null != driver) {
@@ -19,7 +21,11 @@ public abstract class DriverManager {
     public WebDriver getDriver() {
         if (null == driver) {
             startService();
-            createDriver();
+            try {
+                createDriver();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
         return driver;
     }

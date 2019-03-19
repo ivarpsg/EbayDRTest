@@ -3,5 +3,8 @@ package com.ebay.cart.Base;
 public enum DriverType {
 
     CHROME,
-    FIREFOX
+    REMOTE,
+    FIREFOX,
+    IE,
+    IOSCHROME
 }
